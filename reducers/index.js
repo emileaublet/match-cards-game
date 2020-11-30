@@ -12,7 +12,7 @@ const initialState = {
 function rootReducer(state = initialState, action) {
   if (action.type === NEW_BOARD) {
     return Object.assign({}, state, {
-      board: generateBoard(16),
+      board: generateBoard(24),
       currentId: [],
       currentValue: null,
       found: [],
