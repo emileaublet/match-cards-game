@@ -2,7 +2,7 @@ import { NEW_BOARD, SELECT_CARD } from "../constants/action-types";
 import generateBoard from "../utils/generateBoard";
 
 const initialState = {
-  board: [],
+  board: { cards: [] },
   currentId: [],
   currentValue: null,
   found: [],
@@ -11,8 +11,9 @@ const initialState = {
 
 function rootReducer(state = initialState, action) {
   if (action.type === NEW_BOARD) {
+    console.log(action);
     return Object.assign({}, state, {
-      board: generateBoard(24),
+      board: generateBoard(action.payload.grid || 24, action.payload.type),
       currentId: [],
       currentValue: null,
       found: [],
@@ -40,7 +41,7 @@ function rootReducer(state = initialState, action) {
         found: found,
         currentId: currentId,
         currentValue: null,
-        gameWon: found.length === state.board.length,
+        gameWon: found.length === state.board.cards.length,
       });
     }
 
